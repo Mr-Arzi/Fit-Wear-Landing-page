@@ -15,7 +15,8 @@ public class HomeController {
     private ProductoService productoService;
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("productos", productoService.obtenerProductos());
         return "index";
     }
 
