@@ -1,0 +1,235 @@
+/* =======================
+   FITWEAR LANDING THEME (clean)
+   ======================= */
+
+/* ---------- Variables ---------- */
+:root{
+  --fw-bg:#0a0a0a;
+  --fw-text:#ffffff;
+  --fw-muted:#cfcfcf;
+  --container:1600px;
+  --xpad:20px;          /* margen lateral */
+  --yspace:160px;       /* espacio vertical entre secciones */
+}
+
+/* ---------- Reset & base ---------- */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;
+  color:#111;background:#fff;line-height:1.6;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;letter-spacing:.01em
+}
+img{max-width:100%;display:block;object-fit:cover}
+
+/* ---------- Container helper ---------- */
+.wrapper{max-width:var(--container);margin:0 auto;padding:0 var(--xpad)}
+@media (max-width: 980px){
+  :root{ --xpad:24px; --yspace:72px }
+}
+
+/* ---------- Navbar (única definición) ---------- */
+.navbar{
+  position:sticky; top:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  background:var(--fw-bg); color:var(--fw-text);
+  padding:18px 32px; border-bottom:1px solid #151515;
+}
+.brand{display:flex; align-items:center; gap:10px}
+.brand .logo{font-weight:800; font-size:26px; line-height:1}
+.brand .mini{font-weight:800; font-size:30px; margin-top:-10px; letter-spacing:.02em}
+
+.navbar .menu{list-style:none; display:flex; gap:34px; margin:0; padding:0}
+.navbar .menu a{
+  position:relative; display:inline-block;
+  color:var(--fw-text); text-decoration:none; font-weight:600; font-size:18px;
+  letter-spacing:.02em; padding:6px 0; transition:opacity .2s ease;
+}
+.navbar .menu a::after{
+  content:""; position:absolute; left:0; right:0; bottom:-8px; height:3px;
+  background:transparent; transform:scaleX(0); transform-origin:left;
+  transition:transform .2s ease, background .2s;
+}
+.navbar .menu a:hover{opacity:.9}
+.navbar .menu a.active::after,
+.navbar .menu a:focus-visible::after{ background:#fff; transform:scaleX(1) }
+
+.login .login-link{
+  display:flex; align-items:center; gap:10px;
+  color:var(--fw-text); text-decoration:none; font-weight:600; font-size:16px;
+  padding:8px 10px; border-radius:8px;
+}
+.login .login-link:hover{background:#111}
+
+@media (max-width: 980px){
+  .navbar{padding:14px 18px}
+  .navbar .menu{gap:20px}
+  .navbar .menu a{font-size:16px}
+  .brand .logo{font-size:22px}
+  .brand .mini{font-size:26px}
+}
+
+/* ---------- Secciones + diagonales ---------- */
+.section{
+  position:relative; isolation:isolate;
+  padding:var(--yspace) 0; background:#fff;
+}
+.section.dark{background:#000;color:#fff}
+.section .wrapper{position:relative; z-index:2}
+
+/* Más “aire” para los cortes en diagonal */
+.section.diag-top::before,
+.section.diag-bottom::after{
+  content:""; position:absolute; left:0; right:0; height:200px; z-index:1; background:#000;
+  /* triángulo más afilado como en el mockup */
+  clip-path:polygon(0 0,100% 0,100% 65%,0 100%);
+}
+.section.dark.diag-top::before{background:#fff}
+.section.diag-top{padding-top:0}
+.section.diag-top::before{top:-1px}
+
+.section.diag-bottom{padding-bottom:0}
+.section.diag-bottom::after{
+  bottom:-1px; clip-path:polygon(0 0,100% 35%,100% 100%,0 100%)
+}
+.section.dark.diag-bottom::after{background:#fff}
+
+/* ---------- HERO (Nuestra pasión) ---------- */
+.hero{
+  display:grid; grid-template-columns:1.1fr .9fr;
+  gap:60px; align-items:center;
+}
+.hero .text{
+  background:#fff; color:#111;
+  border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,.12);
+  padding:40px;
+}
+.hero.dark .text{background:#111;color:#fff}
+.hero h1{font-size:30px; letter-spacing:.08em; margin:0 0 14px}
+.hero p{margin:0 0 10px}
+.hero .cta{
+  margin-top:16px; display:inline-block; background:#000; color:#fff;
+  padding:12px 24px; border-radius:8px; text-decoration:none; font-weight:700
+}
+.hero.dark .cta{background:#fff;color:#000}
+.hero img{border-radius:10px; box-shadow:0 6px 60px rgba(0,0,0,.25)}
+
+/* ---------- NOSOTROS ---------- */
+.about{
+  display:grid; grid-template-columns:1fr 1fr; gap:90px; align-items:center;
+}
+.about h2{font-size:30px; letter-spacing:.08em; margin:0 0 10px}
+.about .text{padding:20px 40px}
+.about p{font-size:18px; line-height:1.75}
+
+/* ---------- PRODUCTOS ---------- */
+.products h2{ text-align:center; letter-spacing:.08em; margin:0 0 60px }
+.products .grid{
+  display:flex; justify-content:center; align-items:stretch;
+  gap:80px; margin-bottom:60px;
+}
+.card{ position:relative; border-radius:10px; overflow:hidden; }
+.card img{ display:block; width:100%; height:100% }
+.card .label{
+  position:absolute; left:24px; bottom:24px;
+  font-size:28px; font-weight:800; color:#fff; letter-spacing:.06em
+}
+.btn-wide{
+  display:block; margin:10px auto 0; width:max-content;
+  background:#000; color:#fff; border:none; border-radius:8px;
+  padding:14px 40px; font-weight:800; text-decoration:none; font-size:16px
+}
+
+/* ---------- CONTACTO ---------- */
+.contactbar{
+  background:#6f6f6f; color:#fff; border-radius:8px;
+  padding:50px 60px; display:flex; justify-content:space-between;
+  align-items:flex-start; gap:40px;
+}
+.contactbar .cols{ display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start }
+.contactbar p{ margin:8px 0 }
+.social{ display:flex; gap:18px; align-items:center }
+
+/* ---------- Footer ---------- */
+.footer{ background:#000; color:#fff; text-align:center; padding:14px }
+
+/* ---------- Responsive layout ---------- */
+@media (max-width: 980px){
+  .hero{grid-template-columns:1fr; gap:28px}
+  .about{grid-template-columns:1fr; gap:28px}
+  .about .text{padding:0}
+  .products .grid{flex-direction:column; gap:28px; margin-bottom:32px}
+  .contactbar{padding:28px}
+  .contactbar .cols{grid-template-columns:1fr; gap:18px}
+}
+
+
+/* =======================
+   AJUSTES FINALES MOCKUP
+   ======================= */
+
+/* 1) Espaciado específico por sección (opcional) */
+#quienes.section { padding: 160px 0; }
+#productos.section { padding: 180px 0; }
+
+/* 2) Diagonales por defecto: franja completa (igual que en el mockup entre bloques) */
+.section.diag-top::before,
+.section.diag-bottom::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  height: 200px;      /* grosor de la franja */
+  z-index: 1;
+}
+
+.section.diag-top::before {
+  top: -1px;
+  background: #000;   /* color del bloque anterior */
+  clip-path: polygon(0 0, 100% 0, 100% 68%, 0 100%);
+}
+
+.section.diag-bottom::after {
+  bottom: -1px;
+  background: #000;   /* color del bloque siguiente */
+  clip-path: polygon(0 0, 100% 32%, 100% 100%, 0 100%);
+}
+
+.section.dark.diag-top::before { background:#fff; }
+.section.dark.diag-bottom::after { background:#fff; }
+
+/* 3) EXCEPCIONES para que se vea igualito al mockup
+      - Hero (INICIO): "pico" blanco grande arriba-derecha
+      - Productos: "pico" blanco grande abajo-derecha
+   Estas anulan la franja completa SOLO en esas ubicaciones. */
+
+/* 3.a Hero: triangulo blanco arriba-derecha */
+#inicio.section.dark.diag-top::before{
+  background:#fff;
+  /* triángulo: punta en el 70% del alto hacia la derecha */
+  clip-path: polygon(100% 0, 64% 0, 100% 72%);
+}
+
+/* Mantiene franja blanca en la parte inferior del hero */
+#inicio.section.dark.diag-bottom::after{
+  background:#fff;
+  clip-path: polygon(0 0, 100% 38%, 100% 100%, 0 100%);
+}
+
+/* 3.b Productos: triangulo blanco abajo-derecha */
+#productos.section.dark.diag-bottom::after{
+  background:#fff;
+  /* triángulo: nace en esquina inferior derecha y sube en diagonal */
+  clip-path: polygon(100% 100%, 100% 40%, 0 100%);
+}
+
+/* 4) Contacto: solo franja superior (suave) */
+#contacto.section.diag-top::before{
+  background:#000; /* porque la sección anterior (productos) es dark */
+  clip-path: polygon(0 0, 100% 0, 100% 82%, 0 100%);
+}
+
+
+#contacto h2 {
+  color: #ffffff; /* blanco */
+}
