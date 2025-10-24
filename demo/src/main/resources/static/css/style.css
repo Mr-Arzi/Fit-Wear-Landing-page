@@ -1,17 +1,47 @@
+/* ===== Base / scroll ===== */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;          /* scroll vertical */
+  overflow-x: hidden;          /* sin scroll lateral */
+  scroll-behavior: smooth;     /* anclas suaves */
+}
+
+/* Si usas navbar sticky, esto evita que las anclas queden ocultas */
+html {
+  scroll-padding-top: 72px;    /* alto aproximado del navbar */
+}
+
+/* Cada sección respira bien */
+section {
+  min-height: 100vh;           /* al menos una pantalla */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 20px;
+  scroll-margin-top: 72px;     /* extra por si cambian anclas */
+}
+
+/* ===== Tema ===== */
 body {
   background-color: #0e0e0e;
   color: white;
   font-family: 'Poppins', sans-serif;
-  margin: 0;
   text-align: center;
 }
 
+/* ===== Navbar ===== */
 .navbar {
+  position: sticky;            /* se queda pegada arriba */
+  top: 0;
+  z-index: 1000;               /* por encima del contenido */
   display: flex;
   justify-content: center;
   gap: 2rem;
   background: black;
   padding: 1rem;
+  border-bottom: 1px solid #1e1e1e;
 }
 
 .navbar a {
@@ -24,6 +54,7 @@ body {
   color: #00b3ff;
 }
 
+/* ===== Hero ===== */
 .hero {
   padding: 5rem 1rem;
 }
@@ -32,6 +63,7 @@ body {
   font-size: 3rem;
 }
 
+/* ===== Botón ===== */
 .btn {
   display: inline-block;
   background: #00b3ff;
@@ -39,8 +71,11 @@ body {
   padding: 0.8rem 1.5rem;
   border-radius: 1rem;
   text-decoration: none;
+  transition: transform .15s ease, opacity .15s ease;
 }
+.btn:hover { transform: translateY(-2px); opacity: .95; }
 
+/* ===== Tarjetas ===== */
 .card {
   display: inline-block;
   margin: 1rem;
@@ -49,12 +84,31 @@ body {
   padding: 1rem;
   width: 220px;
 }
-
 .card img {
   width: 100%;
   border-radius: 1rem;
 }
 
+/* ===== Grid productos (faltaba) ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;                /* 20px */
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+.grid article {
+  background: #1e1e1e;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.grid img {
+  width: 100%;
+  border-radius: 0.75rem;
+  display: block;
+}
+
+/* ===== Secciones texto ===== */
 .about, .contact {
   padding: 2rem;
   max-width: 600px;
@@ -62,6 +116,7 @@ body {
   text-align: center;
 }
 
+/* ===== Formulario ===== */
 .contact input, .contact textarea {
   display: block;
   width: 100%;
@@ -69,8 +124,9 @@ body {
   padding: 0.8rem;
   border-radius: 0.5rem;
   border: none;
+  background: #1e1e1e;
+  color: white;
 }
-
 .contact button {
   background: #00b3ff;
   color: white;
@@ -78,4 +134,26 @@ body {
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+}
+
+/* ===== Footer ===== */
+footer section[th\\:fragment="footer"], /* por si lo ves desde plantilla */
+section[th\\:fragment="footer"] {
+  padding: 1.5rem 0;
+  border-top: 1px solid #1e1e1e;
+  opacity: .9;
+}
+
+
+
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.25rem; }
+  html { scroll-padding-top: 64px; }
+  section { scroll-margin-top: 64px; }
 }
