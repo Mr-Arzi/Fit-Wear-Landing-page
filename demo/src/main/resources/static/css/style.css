@@ -1,0 +1,81 @@
+body {
+  background-color: #0e0e0e;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  background: black;
+  padding: 1rem;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar a.active, .navbar a:hover {
+  color: #00b3ff;
+}
+
+.hero {
+  padding: 5rem 1rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.btn {
+  display: inline-block;
+  background: #00b3ff;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 1rem;
+  text-decoration: none;
+}
+
+.card {
+  display: inline-block;
+  margin: 1rem;
+  background: #1e1e1e;
+  border-radius: 1rem;
+  padding: 1rem;
+  width: 220px;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.about, .contact {
+  padding: 2rem;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.contact input, .contact textarea {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: none;
+}
+
+.contact button {
+  background: #00b3ff;
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
